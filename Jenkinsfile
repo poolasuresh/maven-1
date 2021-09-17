@@ -1,4 +1,4 @@
-pipeline {
+mpipeline {
     agent any
 tools {
     maven 'maven'
@@ -6,7 +6,7 @@ tools {
     stages {
         stage('gitcheckout') {
             steps {
-                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/kliakos/sparkjava-war-example.git']]])
+                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/poolasuresh/maven-1.git']]])
             }
         }
         stage('build') {
@@ -17,7 +17,7 @@ tools {
         }
         stage('deploy') {
             steps {
-                deploy adapters: [tomcat9(credentialsId: '2067cda4-19a5-473c-9ec2-1a1a79ab9fe3', path: '', url: 'http://localhost:8070/')], contextPath: 'sparkjava-war-example', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: '2067cda4-19a5-473c-9ec2-1a1a79ab9fe3', path: '', url: 'http://localhost:8070/')], contextPath: 'maven-1', war: '**/*.war'
                
                            }
         }
